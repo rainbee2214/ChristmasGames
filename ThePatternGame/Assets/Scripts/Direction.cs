@@ -5,26 +5,23 @@ public class Direction : MonoBehaviour
 {
     bool left;
     bool none = false;
-    float increment = 0.001f;
+    float increment;
+    float incrementLower = 0.001f;
+    float incrementHigher = 0.003f;
     Vector2 position;
 
-    float xBound = 5f;
+    float xBound = 3f;
  
     void Start()
     {
         int d = Random.Range(0, 2);
-        if (d == 0)
+        switch(d)
         {
-            left = true;
+            case 0: left = true; break;
+            case 1: left = false; break;
+            default: none = true;  break;
         }
-        else if (d == 1)
-        {
-            left = false;
-        }
-        else if (d == 2)
-        {
-            none = true;
-        }
+        increment = Random.Range(incrementLower, incrementHigher);
     }
 
     void Update()
@@ -41,11 +38,15 @@ public class Direction : MonoBehaviour
                 position.x += increment;
             }
             transform.position = position;
-            if (left && position.x >= xBound) ChangeDirection();
-            else if (!left && position.x <= -xBound) ChangeDirection();
+            if (left && position.x <= -xBound) ChangeDirection();
+            else if (!left && position.x >= xBound) ChangeDirection();
         }
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        ChangeDirection();
+    }
     public void ChangeDirection()
     {
         left = !left;

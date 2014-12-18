@@ -8,10 +8,10 @@ public class SnowflakeMachine : MonoBehaviour
     int maxSize = 30;
 
     List<GameObject> snowflakes;
-    float gravityScaleUpper = 0.01f, gravityScaleLower = 0.002f;
+    float gravityScaleUpper = 0.02f, gravityScaleLower = 0.005f;
     Vector2 startingPosition;
 
-    float xBound = 3f;//Camera.main.orthographicSize;
+    float xBound = 3f;
     public bool addSnowflake = true;
 
     float nextReleaseTime = 5f;
@@ -30,14 +30,7 @@ public class SnowflakeMachine : MonoBehaviour
         if (addSnowflake && Time.time > nextReleaseTime)
         {
             nextReleaseTime += delay;
-            //addSnowflake = false;
-           AddSnowFlake();
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("Mouse left click");
-
+            AddSnowFlake();
         }
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -45,11 +38,8 @@ public class SnowflakeMachine : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint((Input.GetTouch(0).position)), Vector2.zero);
             if (hit.collider != null)
             {
-                Camera.main.backgroundColor = Color.white;
-            }
-            else
-            {
-                Camera.main.backgroundColor = Color.black;
+                hit.collider.gameObject.SetActive(false);
+                SnowflakesController.controller.UpdateScore(1f);
             }
         }
     }
