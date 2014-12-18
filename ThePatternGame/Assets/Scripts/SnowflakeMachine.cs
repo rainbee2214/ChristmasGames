@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class SnowflakeMachine : MonoBehaviour 
 {
     public int poolSize = 10;
+    int maxSize = 30;
+
     List<GameObject> snowflakes;
     float gravityScaleUpper = 0.01f, gravityScaleLower = 0.002f;
     Vector2 startingPosition;
@@ -14,6 +16,8 @@ public class SnowflakeMachine : MonoBehaviour
 
     float nextReleaseTime = 5f;
     float delay = 1f;
+
+    int lastSnowflake = 0;
 
 	void Start () 
     {
@@ -46,7 +50,6 @@ public class SnowflakeMachine : MonoBehaviour
             else
             {
                 Camera.main.backgroundColor = Color.black;
-
             }
         }
     }
@@ -58,16 +61,30 @@ public class SnowflakeMachine : MonoBehaviour
 
     void AddSnowFlake()
     {
-        if (snowflakes == null) snowflakes = new List<GameObject>();
-        startingPosition.x = Random.Range(-xBound, xBound);
-        startingPosition.y = transform.position.y;
+        if (snowflakes.Count >= maxSize)
+        {
+            snowflakes[lastSnowflake].gameObject.SetActive(false);
+            startingPosition.x = Random.Range(-xBound, xBound);
+            startingPosition.y = transform.position.y;
+            snowflakes[lastSnowflake].transform.position = startingPosition;
 
-        snowflakes.Add(Instantiate(Resources.Load(("Snowflakes/Snowflake" + Random.Range(1,7)), typeof(GameObject)), startingPosition, Quaternion.identity) as GameObject);
-        int i = snowflakes.Count;
-        snowflakes[i-1].name = i + "Snowflake";
-        snowflakes[i-1].gameObject.AddComponent<Rigidbody2D>();
+            snowflakes[lastSnowflake].gameObject.SetActive(true);
+            lastSnowflake++;
+            if (lastSnowflake >= snowflakes.Count) lastSnowflake = 0;
+        }
+        else
+        {
+            if (snowflakes == null) snowflakes = new List<GameObject>();
+            startingPosition.x = Random.Range(-xBound, xBound);
+            startingPosition.y = transform.position.y;
 
-        snowflakes[i-1].gameObject.GetComponent<Rigidbody2D>().gravityScale = Random.Range(gravityScaleLower, gravityScaleUpper);
+            snowflakes.Add(Instantiate(Resources.Load(("Snowflakes/Snowflake" + Random.Range(1,7)), typeof(GameObject)), startingPosition, Quaternion.identity) as GameObject);
+            int i = snowflakes.Count;
+            snowflakes[i-1].name = i + "Snowflake";
+            snowflakes[i-1].gameObject.AddComponent<Rigidbody2D>();
+
+            snowflakes[i-1].gameObject.GetComponent<Rigidbody2D>().gravityScale = Random.Range(gravityScaleLower, gravityScaleUpper);
+        }
     }
 
     void GetSnowflakes()
