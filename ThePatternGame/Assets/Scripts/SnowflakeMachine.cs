@@ -4,19 +4,17 @@ using System.Collections.Generic;
 
 public class SnowflakeMachine : MonoBehaviour 
 {
-    public int poolSize = 10;
-    int maxSize = 30;
-
-    List<GameObject> snowflakes;
-    float gravityScaleUpper = 0.02f, gravityScaleLower = 0.005f;
-    Vector2 startingPosition;
-
-    float xBound = 3f;
     public bool addSnowflake = true;
+    public int poolSize = SnowflakesController.poolSize;
+    int maxSize = SnowflakesController.maxSize;
 
-    float nextReleaseTime = 5f;
-    float delay = 1f;
-
+    float gravityScaleUpper = 0.04f;
+    float gravityScaleLower = 0.005f;
+    float xBound = 3f;
+    List<GameObject> snowflakes;
+    Vector2 startingPosition;
+    float nextReleaseTime = 3f;
+    float delay = 0.75f;
     int lastSnowflake = 0;
 
 	void Start () 
@@ -33,7 +31,7 @@ public class SnowflakeMachine : MonoBehaviour
             AddSnowFlake();
         }
 
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint((Input.GetTouch(0).position)), Vector2.zero);
             if (hit.collider != null)

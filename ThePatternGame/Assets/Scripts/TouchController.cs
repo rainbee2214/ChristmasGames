@@ -20,38 +20,7 @@ public class TouchController : MonoBehaviour
     }
 	void Update () 
     {
-        if (Input.touchCount > 0)
-        {
-            //Do what with input?
-            //Check for other conditions, are they allowed to touch ? how many fingers? are they touching the right place on screen ?
-
-            if (Input.touchCount == 2)
-            {
-                Camera.main.backgroundColor = Color.white;
-            }
-            else 
-                Camera.main.backgroundColor = Color.black;
-            //else 
-            //{
-            //    if (Input.GetTouch(0).phase == TouchPhase.Moved)
-            //    {
-            //        Camera.main.backgroundColor = Color.black;
-            //    }
-
-            //    if (Input.GetTouch(0).phase == TouchPhase.Stationary)
-            //    {
-            //        Camera.main.backgroundColor = Color.green;
-            //    }
-            //    if (Input.GetTouch(0).phase == TouchPhase.Ended)
-            //    {
-            //        Camera.main.backgroundColor = Color.yellow;
-            //    }
-            //}
-        }
-        else
-        {
-            Camera.main.backgroundColor = colors[currentColor];
-        }
+       
 	}
 
     public void ChangeBackGroundColor()
