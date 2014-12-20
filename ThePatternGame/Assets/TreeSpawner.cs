@@ -9,16 +9,13 @@ public class TreeSpawner : MonoBehaviour
     List<Vector2> gridSpaces = new List<Vector2>();
     List<GameObject> trees;
 
-    float horizontalGap = 3f;
+    float horizontalGap = 3.5f;
     float verticalGap = 5f;
 
 	void Start () 
     {
-        SetGridSpaces();
-        GameObject tree2 = Instantiate(Resources.Load(("Trees/christmasTree" + Random.Range(1,20)), typeof(GameObject))) as GameObject;
-        tree2.name = "Tree";
-        
-        //SpawnTrees();
+        SetGridSpaces();        
+        SpawnTrees();
 	}
 	
 	void Update () 
@@ -38,8 +35,14 @@ public class TreeSpawner : MonoBehaviour
 
         int i = 1;
         foreach (Vector2 position in gridSpaces)
-        {
-            trees.Add(Instantiate(Resources.Load(("Sprites/Trees/christmasTree" + i) ,typeof(GameObject)),position, Quaternion.identity) as GameObject);
+        {  
+            trees.Add
+                (Instantiate(
+                //Resources.Load(("Trees/christmasTree" + Random.Range(1, 20)), typeof(GameObject))
+                Resources.Load(("Trees/christmasTree" + i), typeof(GameObject))
+                , position
+                , Quaternion.identity) as GameObject);
+            
             i++;
             if (i >= 20) i = 1;
         }
@@ -47,8 +50,11 @@ public class TreeSpawner : MonoBehaviour
 
     void SetGridSpaces()
     {
-        float startingX = columms * horizontalGap / 2;
-        float startingY = rows * verticalGap / 2;
+        float startingX = (columms * horizontalGap / 2f) - horizontalGap/2;
+        float startingY = (rows * verticalGap / 2f) - verticalGap/2;
+        Debug.Log(startingX);
+        Debug.Log(startingY);
+        
         Vector2 position = new Vector2(-startingX, startingY);
 
         for (int i = 0; i < rows * columms; i++)
@@ -62,9 +68,9 @@ public class TreeSpawner : MonoBehaviour
             position.x += horizontalGap;
         }
 
-        for (int i = 0; i < gridSpaces.Count; i++)
-        {
-            Debug.Log(gridSpaces[i]);
-        }
+        //for (int i = 0; i < gridSpaces.Count; i++)
+        //{
+        //    Debug.Log(gridSpaces[i]);
+        //}
     }
 }
