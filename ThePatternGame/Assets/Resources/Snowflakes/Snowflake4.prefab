@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21241744}
   - 114: {fileID: 11408774}
   - 114: {fileID: 11478722}
-  - 61: {fileID: 6195508}
+  - 58: {fileID: 5896112}
   m_Layer: 0
   m_Name: Snowflake4
   m_TagString: Untagged
@@ -31,8 +31,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!61 &6195508
-BoxCollider2D:
+--- !u!58 &5896112
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -40,7 +40,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 3, y: 3}
+  m_Radius: 2.4000001
   m_Center: {x: 0, y: 0}
 --- !u!114 &11408774
 MonoBehaviour:

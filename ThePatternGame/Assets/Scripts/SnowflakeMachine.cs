@@ -17,34 +17,60 @@ public class SnowflakeMachine : MonoBehaviour
     float delay = 0.75f;
     int lastSnowflake = 0;
 
+    float burstDelay = 5f;
+    float nextBurstTime = 10f;
+    int burstSize = 5;
+
 	void Start () 
     {
+        if (snowflakes != null)
+        {
+            Debug.Log("Snowflakes not null");
+            snowflakes.Clear();
+        }
         GetSnowflakes();
 	}
 	
 
     void Update()
     {
-        if (addSnowflake && Time.time > nextReleaseTime)
+        Debug.Log(poolSize);
+        if (addSnowflake && Time.timeSinceLevelLoad > nextReleaseTime)
         {
             nextReleaseTime += delay;
             AddSnowFlake();
         }
 
-        if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if (Time.timeSinceLevelLoad > nextBurstTime)
         {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint((Input.GetTouch(0).position)), Vector2.zero);
+            nextBurstTime += burstDelay;
+            for (int i = 0; i < burstSize; i++)
+            {
+                AddSnowFlake();
+            }
+        }
+
+        if (Input.touchCount > 0)
+        {
+            if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint((Input.GetTouch(0).position)), Vector2.zero);
+                if (hit.collider != null)
+                {
+                    hit.collider.gameObject.SetActive(false);
+                    SnowflakesController.controller.UpdateScore(1f);
+                }
+            }
+        }
+        else if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             if (hit.collider != null)
             {
                 hit.collider.gameObject.SetActive(false);
                 SnowflakesController.controller.UpdateScore(1f);
             }
         }
-    }
-
-
-    void GetSnowflake()
-    {
     }
 
     void AddSnowFlake()

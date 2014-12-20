@@ -6,19 +6,48 @@ public class FadeOut : MonoBehaviour
 {
     public float speed = 0.01f;
     public float delay = 3f;
+    public bool loop = false;
+
+    Color startingColor;
+    Text text;
+
+    void Start()
+    {
+        text = GetComponent<Text>();
+        startingColor = text.color;
+    }
 
 	void Update () 
     {
-	    if (Time.timeSinceLevelLoad > delay)
+        if (loop)
         {
-            Text text = GetComponent<Text>();
             Color color = text.color;
             Color finalColor = color;
             finalColor.a = 0;
 
-            text.color = Color.Lerp(color, finalColor, Time.time*speed);
+            text.color = Color.Lerp(color, finalColor, Time.time * speed);
+            if (text.color == finalColor)
+            {
+                text.color = startingColor;
+                gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+	        if (Time.timeSinceLevelLoad > delay)
+            {
+                Color color = text.color;
+                Color finalColor = color;
+                finalColor.a = 0;
+
+                text.color = Color.Lerp(color, finalColor, Time.time*speed);
+                if (text.color == finalColor)
+                {
+                    text.color = startingColor;
+                    gameObject.SetActive(false);
+                }
+            }
         }
 	}
-
 
 }
