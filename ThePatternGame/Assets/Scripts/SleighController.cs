@@ -3,18 +3,12 @@ using System.Collections;
 
 public class SleighController : MonoBehaviour 
 {
-    float speed = 0.0001f;
     float xBound = 5f;
     bool left = false;
     bool right = false;
 
     Vector2 position;
     Vector2 startingPosition;
-
-	void Start () 
-    {
-	
-	}
 	
 	void Update () 
     {

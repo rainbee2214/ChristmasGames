@@ -11,8 +11,25 @@ public class Toy : MonoBehaviour
 
     public void Reset(string name)
     {
-        if (name == "Sleigh") SleighRideController.controller.toyCatchSound.audio.Play();
-        else if (name == "Floor") SleighRideController.controller.hitGroundSound.audio.Play();
+        if (name == "Sleigh")
+        {
+            if (gameObject.tag == "Toy")
+            {
+                SleighRideController.controller.toyCatchSound.audio.Play();
+                SleighRideController.controller.toysSaved++;
+            }
+            else
+            {
+                SleighRideController.controller.snowmanCrush.audio.Play();
+                SleighRideController.controller.score -= 10;
+                SleighRideController.controller.snowmanHits--;
+            }
+        }
+        else if (name == "Floor")
+        {
+            SleighRideController.controller.hitGroundSound.audio.Play();
+            SleighRideController.controller.toysDestroyed++;
+        }
         gameObject.SetActive(false);
     }
 }

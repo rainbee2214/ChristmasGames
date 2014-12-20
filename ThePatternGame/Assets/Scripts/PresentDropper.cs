@@ -13,8 +13,11 @@ public class PresentDropper : MonoBehaviour
 
     List<Sprite> toySprites = new List<Sprite>();
 
+    bool snowmanDropper = false;
+
 	void Start () 
     {
+        if (gameObject.name == "SnowmanDropper") snowmanDropper = true;
         if (colors == null)
         {
             colors = new Color[1];
@@ -26,23 +29,47 @@ public class PresentDropper : MonoBehaviour
 	
 	void Update () 
     {
-	    if (poolSize < SleighRideController.poolSize)
+        if (snowmanDropper)
         {
-            poolSize = SleighRideController.poolSize;
-            AddToys();
+            if (poolSize < SleighRideController.poolSize)
+            {
+                poolSize = SleighRideController.poolSize;
+                AddToys(5);
+            }
         }
+        else
+        {
+	        if (poolSize < SleighRideController.poolSize)
+            {
+                poolSize = SleighRideController.poolSize;
+                AddToys();
+            }
 
-        if (Time.time > nextDropTime) DropToy();
+        }
+            if (Time.time > nextDropTime) DropToy();
 	}
 
     public void DropToy()
     {
-        nextDropTime = Time.time + dropDelay;
-
         toys[topToy].gameObject.rigidbody2D.gravityScale = Random.Range(SleighRideController.gravityLowerBound, SleighRideController.gravityUpperBound);
-        toys[topToy].gameObject.GetComponent<SpriteRenderer>().sprite = toySprites[Random.Range(0, 5)];
-        toys[topToy].gameObject.GetComponent<SpriteRenderer>().color = colors[Random.Range(0, colors.Length - 1)];
 
+        if (snowmanDropper)
+        {
+            nextDropTime = Time.time + dropDelay * 10;
+            toys[topToy].gameObject.GetComponent<SpriteRenderer>().sprite = toySprites[5];
+            toys[topToy].gameObject.GetComponent<SpriteRenderer>().color = colors[0];
+            float randomScale = Random.Range(SleighRideController.scaleLowerBound*2, SleighRideController.scaleUpperBound);
+            toys[topToy].transform.localScale = new Vector3(randomScale, randomScale, 1f);
+        }
+        else
+        {
+            nextDropTime = Time.time + dropDelay;
+            toys[topToy].gameObject.GetComponent<SpriteRenderer>().sprite = toySprites[Random.Range(0, 5)];
+            toys[topToy].gameObject.GetComponent<SpriteRenderer>().color = colors[Random.Range(0, colors.Length - 1)];
+            float randomScale = Random.Range(SleighRideController.scaleLowerBound, SleighRideController.scaleUpperBound);
+            toys[topToy].transform.localScale = new Vector3(randomScale, randomScale, 1f);
+        }
+        
         toys[topToy].transform.rotation = Quaternion.Euler(0, 0, Random.Range(-45, 45));
         Vector2 position = transform.position;
         position.x = Random.Range(-SleighRideController.xBound, SleighRideController.xBound);
@@ -62,6 +89,19 @@ public class PresentDropper : MonoBehaviour
         }
     }
 
+    void AddToys(int toyIndex)
+    {
+        for (int i = toys.Count; i < poolSize; i++)
+        {
+            toys.Add(Instantiate(Resources.Load("SleighRide/toy", typeof(GameObject))) as GameObject);
+            toys[i].transform.parent = transform;
+            toys[i].name = "Snowman" + i;
+            toys[topToy].gameObject.GetComponent<SpriteRenderer>().sprite = toySprites[toyIndex];
+            toys[topToy].gameObject.GetComponent<SpriteRenderer>().color = colors[0];
+      
+        }
+    }
+
     void BuildToys()
     {
         for (int i = 0; i < poolSize; i++)
@@ -70,7 +110,19 @@ public class PresentDropper : MonoBehaviour
             Vector2 position = transform.position;
             position.x = Random.Range(-SleighRideController.xBound, SleighRideController.xBound);
             toys[i].transform.parent = transform;
-            toys[i].name = "Toy" + i;
+            if (gameObject.name == "SnowmanDropper")
+            {
+                toys[i].name = "Snowman" + i;
+                toys[i].tag = "Snowman";
+                toys[topToy].gameObject.GetComponent<SpriteRenderer>().sprite = toySprites[5];
+                toys[topToy].gameObject.GetComponent<SpriteRenderer>().color = colors[0];
+            }
+            else
+            {
+                toys[i].name = "Toy" + i;
+                toys[i].tag = "Toy";
+
+            }
             toys[i].transform.position = position;
         }
     }
