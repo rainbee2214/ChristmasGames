@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 441892}
   - 212: {fileID: 21241892}
   - 61: {fileID: 6141892}
+  - 114: {fileID: 11460980}
   m_Layer: 0
   m_Name: christmasTree6
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 141892}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: .25, y: .25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -38,8 +39,20 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 3.0999999, y: 4.30000019}
+  m_Size: {x: 3.70000005, y: 4.5}
   m_Center: {x: 0, y: 0}
+--- !u!114 &11460980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 141892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e119d4f5b738a048b0db001af2a51a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  status: 0
 --- !u!212 &21241892
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -231,7 +231,7 @@ GameObject:
   - 114: {fileID: 229205268}
   - 114: {fileID: 229205267}
   m_Layer: 5
-  m_Name: StartGame
+  m_Name: TreeChopper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -286,7 +286,7 @@ MonoBehaviour:
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level
+          m_StringArgument: TreeChopper
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -333,7 +333,7 @@ RectTransform:
   m_Children:
   - {fileID: 243706572}
   m_Father: {fileID: 1353340074}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -400,7 +400,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Start Game
+  m_Text: Tree Chopper
 --- !u!222 &243706574
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -439,7 +439,7 @@ RectTransform:
   m_Children:
   - {fileID: 782025235}
   m_Father: {fileID: 1353340074}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: -200}
@@ -628,7 +628,7 @@ RectTransform:
   m_Children:
   - {fileID: 6933410}
   m_Father: {fileID: 1353340074}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: -100}
@@ -923,9 +923,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 229205270}
   - {fileID: 1181941159}
   - {fileID: 587073291}
+  - {fileID: 229205270}
   m_Father: {fileID: 1657045291}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}

@@ -9,11 +9,19 @@ public class TreeSpawner : MonoBehaviour
     List<Vector2> gridSpaces = new List<Vector2>();
     List<GameObject> trees;
 
-    float horizontalGap = 3.5f;
-    float verticalGap = 5f;
+    float horizontalGap = 3f;
+    float verticalGap = 3.5f;
+
+    List<Sprite> treeSprites = new List<Sprite>();
+
+    public Sprite GetSprite()
+    {
+        return treeSprites[Random.Range(1, 19)];
+    }
 
 	void Start () 
     {
+        GetTreeSprites();
         SetGridSpaces();        
         SpawnTrees();
 	}
@@ -29,22 +37,27 @@ public class TreeSpawner : MonoBehaviour
         if (columms != TreeChopperController.columns) columms = TreeChopperController.columns;
     }
 
+    void GetTreeSprites()
+    {
+        for (int i = 1; i <= 20; i++)
+        {
+            treeSprites.Add(Instantiate(Resources.Load("Sprites/Trees/christmastree" + i, typeof(Sprite))) as Sprite);
+        }
+    }
+
     void SpawnTrees()
     {
         if (trees == null) trees = new List<GameObject>();
 
-        int i = 1;
         foreach (Vector2 position in gridSpaces)
         {  
-            trees.Add
-                (Instantiate(
-                //Resources.Load(("Trees/christmasTree" + Random.Range(1, 20)), typeof(GameObject))
-                Resources.Load(("Trees/christmasTree" + i), typeof(GameObject))
-                , position
-                , Quaternion.identity) as GameObject);
-            
-            i++;
-            if (i >= 20) i = 1;
+            trees.Add(Instantiate(Resources.Load(("Trees/christmasTree"), typeof(GameObject)), position, Quaternion.identity) as GameObject);
+        }
+
+        for (int i = 0; i < trees.Count; i++)
+        {
+            trees[i].transform.parent = transform;
+            trees[i].gameObject.GetComponent<SpriteRenderer>().sprite = GetSprite();
         }
     }
 
@@ -68,9 +81,5 @@ public class TreeSpawner : MonoBehaviour
             position.x += horizontalGap;
         }
 
-        //for (int i = 0; i < gridSpaces.Count; i++)
-        //{
-        //    Debug.Log(gridSpaces[i]);
-        //}
     }
 }
