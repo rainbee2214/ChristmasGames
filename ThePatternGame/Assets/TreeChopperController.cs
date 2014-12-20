@@ -22,6 +22,8 @@ public class TreeChopperController : MonoBehaviour
 
     public float score = 1f;
     public int level = 1;
+    public int trees = 0;
+    public int misfits = 0;
 
     public Color growingColor, fullGrownColor, dyingColor, deadColor;
     public GameObject fullGrownAudio;
@@ -82,6 +84,8 @@ public class TreeChopperController : MonoBehaviour
                     treeParticles.Play();
                     stopParticles += particleDelay;
 
+                    if (hit.collider.gameObject.GetComponent<Tree>().status == TreeChopperController.Status.FullGrown) TreeChopperController.controller.trees++;
+                    else if (hit.collider.gameObject.GetComponent<Tree>().status == TreeChopperController.Status.Growing) TreeChopperController.controller.misfits++;
                     currentTree = hit.collider.gameObject;
                 }
             }
@@ -120,6 +124,9 @@ public class TreeChopperController : MonoBehaviour
                 treeParticles.Play();
                 stopParticles = Time.time + particleDelay;
 
+                if (hit.collider.gameObject.GetComponent<Tree>().status == TreeChopperController.Status.FullGrown) TreeChopperController.controller.trees++;
+                else if (hit.collider.gameObject.GetComponent<Tree>().status == TreeChopperController.Status.Growing) TreeChopperController.controller.misfits++;
+                   
                 currentTree = hit.collider.gameObject;
             }
         }

@@ -47,6 +47,9 @@ public class Tree : MonoBehaviour
             Vector2 fullScale = new Vector2(1.2f, 1.2f);
             transform.localScale = Vector2.Lerp(scale, fullScale, (Time.time - timeStartedGrowing)*speed);
         }
+        else if (status == TreeChopperController.Status.FullGrown)
+        {
+        }
         else if (status == TreeChopperController.Status.Dying)
         {
             Color endColor = TreeChopperController.controller.dyingColor;
