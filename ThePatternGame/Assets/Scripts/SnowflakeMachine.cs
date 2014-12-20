@@ -26,7 +26,6 @@ public class SnowflakeMachine : MonoBehaviour
     {
         if (snowflakes != null)
         {
-            Debug.Log("Snowflakes not null");
             snowflakes.Clear();
         }
         GetSnowflakes();
@@ -116,9 +115,9 @@ public class SnowflakeMachine : MonoBehaviour
     void GetSnowflakes()
     {
         snowflakes = new List<GameObject>();
-        for (int i = 1; i <= poolSize; i++)
-        {
-            AddSnowFlake();
-        }
+        //for (int i = 1; i <= poolSize; i++)
+        //{
+        //    AddSnowFlake();
+        //}
     }
 }

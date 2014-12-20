@@ -77,6 +77,9 @@ public class TreeChopperController : MonoBehaviour
                             }
                         case TreeChopperController.Status.Dead: break;
                     }
+                    if (hit.collider.gameObject.GetComponent<Tree>().status == TreeChopperController.Status.FullGrown) TreeChopperController.controller.trees++;
+                    else if (hit.collider.gameObject.GetComponent<Tree>().status == TreeChopperController.Status.Growing) TreeChopperController.controller.misfits++;
+                    
                     hit.collider.gameObject.GetComponent<Tree>().status = TreeChopperController.Status.Dead;
                     hit.collider.gameObject.SetActive(false);
 
@@ -84,8 +87,6 @@ public class TreeChopperController : MonoBehaviour
                     treeParticles.Play();
                     stopParticles += particleDelay;
 
-                    if (hit.collider.gameObject.GetComponent<Tree>().status == TreeChopperController.Status.FullGrown) TreeChopperController.controller.trees++;
-                    else if (hit.collider.gameObject.GetComponent<Tree>().status == TreeChopperController.Status.Growing) TreeChopperController.controller.misfits++;
                     currentTree = hit.collider.gameObject;
                 }
             }
@@ -117,6 +118,9 @@ public class TreeChopperController : MonoBehaviour
                         }
                     case TreeChopperController.Status.Dead: break;
                 }
+                if (hit.collider.gameObject.GetComponent<Tree>().status == TreeChopperController.Status.FullGrown) TreeChopperController.controller.trees++;
+                else if (hit.collider.gameObject.GetComponent<Tree>().status == TreeChopperController.Status.Growing) TreeChopperController.controller.misfits++;
+                
                 hit.collider.gameObject.GetComponent<Tree>().status = TreeChopperController.Status.Dead;
                 hit.collider.gameObject.SetActive(false);
 
@@ -124,8 +128,6 @@ public class TreeChopperController : MonoBehaviour
                 treeParticles.Play();
                 stopParticles = Time.time + particleDelay;
 
-                if (hit.collider.gameObject.GetComponent<Tree>().status == TreeChopperController.Status.FullGrown) TreeChopperController.controller.trees++;
-                else if (hit.collider.gameObject.GetComponent<Tree>().status == TreeChopperController.Status.Growing) TreeChopperController.controller.misfits++;
                    
                 currentTree = hit.collider.gameObject;
             }

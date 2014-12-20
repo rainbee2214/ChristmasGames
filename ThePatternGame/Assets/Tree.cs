@@ -12,7 +12,7 @@ public class Tree : MonoBehaviour
 
     float increment;
     float nextGrowthTime;
-    float speed = 0.00005f;
+    public float speed = 0.00005f;
 
     Vector2 startingScale = new Vector2(0.25f, 0.25f);
     
@@ -68,6 +68,8 @@ public class Tree : MonoBehaviour
         timeStartedGrowing = Time.time;
         transform.localScale = startingScale;
         status = TreeChopperController.Status.Growing;
+        speed = Random.Range(0.00001f, 0.0005f);
+        growthTime = Random.Range(growthTime * 0.75f, growthTime * 1.25f);
         gameObject.GetComponent<SpriteRenderer>().sprite = gameObject.GetComponentInParent<TreeSpawner>().GetSprite();
     }
 

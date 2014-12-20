@@ -118,7 +118,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 1b2a93cd3fa9cef4cae750f3099f9089, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0
+  m_Volume: .25
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -211,7 +211,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 12
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -590,7 +590,7 @@ ParticleSystem:
     radius: 1
     angle: 11.4499998
     length: 5
-    boxX: 18
+    boxX: 35
     boxY: 1
     boxZ: 10
     placementMode: 0
@@ -1800,7 +1800,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2060492, guid: 66c8e8ca085d1a5408fb24bbaa5e63e6, type: 2}
       propertyPath: orthographic size
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 160472, guid: 66c8e8ca085d1a5408fb24bbaa5e63e6, type: 2}
       propertyPath: m_IsActive
@@ -1812,7 +1812,7 @@ Prefab:
       objectReference: {fileID: 8300000, guid: 1b2a93cd3fa9cef4cae750f3099f9089, type: 3}
     - target: {fileID: 8260492, guid: 66c8e8ca085d1a5408fb24bbaa5e63e6, type: 2}
       propertyPath: m_Volume
-      value: 0
+      value: .25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 66c8e8ca085d1a5408fb24bbaa5e63e6, type: 2}
@@ -1848,8 +1848,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 1
   level: 1
+  trees: 0
+  misfits: 0
   growingColor: {r: .25964433, g: .764705896, b: 0, a: 1}
-  fullGrownColor: {r: .881785095, g: 0, b: .894117653, a: 1}
+  fullGrownColor: {r: 1, g: 0, b: 0, a: 1}
   dyingColor: {r: .371024311, g: .404411793, b: .353860319, a: 1}
   deadColor: {r: 0, g: 0, b: 0, a: 0}
   fullGrownAudio: {fileID: 0}
@@ -3352,13 +3354,12 @@ RectTransform:
 --- !u!114 &994759656
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11460458, guid: 66c8e8ca085d1a5408fb24bbaa5e63e6,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 994759654}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdf15e41bce33a946a8f09b114938a13, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b972b83ed92a814194c3299b196c46c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &994759657
@@ -3541,6 +3542,10 @@ Prefab:
     - target: {fileID: 443682, guid: 79b12b8b77a45314699c79093248d1a1, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 19843682, guid: 79b12b8b77a45314699c79093248d1a1, type: 2}
+      propertyPath: ShapeModule.boxX
+      value: 35
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79b12b8b77a45314699c79093248d1a1, type: 2}
@@ -4065,13 +4070,12 @@ RectTransform:
 --- !u!114 &1969790431
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11460456, guid: 66c8e8ca085d1a5408fb24bbaa5e63e6,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1969790429}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 280b75d7f3265c34fa4cb9841b602f1f, type: 3}
+  m_Script: {fileID: 11500000, guid: 59b9999bcb2a5f8468eb704977ca4a9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1969790432
