@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: 82ca9b7cecd7b9c46980d6a5d52e0a3b
-=======
-guid: a2486b2bead7a8241878475af79005f7
->>>>>>> Stashed changes
+guid: 72a899083d0e54e47803e861f08715da
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 2
@@ -26,10 +22,10 @@ TextureImporter:
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 1024
+  maxTextureSize: 8
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: -1
   nPOTScale: 0
