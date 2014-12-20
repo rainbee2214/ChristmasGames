@@ -11,6 +11,13 @@ public class SnowflakesController : MonoBehaviour
     public static int maxLevel = 11;
     public static int startingHealth = 25;
 
+    public static float gravityScaleUpper = 0.04f;
+    public static float gravityScaleLower = 0.005f;
+    public static float xBound = 3f;
+    public static float delay = 0.75f;
+    public static float burstDelay = 5;
+    public static int burstSize = 5;
+
     public static SnowflakesController controller;
 
     public float score;
@@ -57,6 +64,10 @@ public class SnowflakesController : MonoBehaviour
         level++;
         health = SnowflakesController.startingHealth;
         SnowflakesController.maxHealth += 10;
+        SnowflakesController.burstDelay -= 0.25f;
+        SnowflakesController.burstSize++;
+        SnowflakesController.gravityScaleLower += 0.002f;
+        SnowflakesController.delay -= 0.025f;
 
         if (level >= maxLevel) Application.LoadLevel("Win");
     }

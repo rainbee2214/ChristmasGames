@@ -8,18 +8,19 @@ public class SnowflakeMachine : MonoBehaviour
     public int poolSize = SnowflakesController.poolSize;
     int maxSize = SnowflakesController.maxSize;
 
-    float gravityScaleUpper = 0.04f;
-    float gravityScaleLower = 0.005f;
-    float xBound = 3f;
+    float gravityScaleUpper = SnowflakesController.gravityScaleUpper;
+    float gravityScaleLower = SnowflakesController.gravityScaleUpper;
+
+    float xBound = SnowflakesController.xBound;
     List<GameObject> snowflakes;
     Vector2 startingPosition;
     float nextReleaseTime = 3f;
-    float delay = 0.75f;
+    float delay = SnowflakesController.delay;
     int lastSnowflake = 0;
 
-    float burstDelay = 5f;
+    float burstDelay = SnowflakesController.burstDelay;
     float nextBurstTime = 10f;
-    int burstSize = 5;
+    int burstSize = SnowflakesController.burstSize;
 
 	void Start () 
     {
@@ -30,11 +31,22 @@ public class SnowflakeMachine : MonoBehaviour
         }
         GetSnowflakes();
 	}
-	
+
+    void CheckStats()
+    {
+        if (gravityScaleUpper != SnowflakesController.gravityScaleUpper) gravityScaleUpper = SnowflakesController.gravityScaleUpper;
+        if (gravityScaleLower != SnowflakesController.gravityScaleLower) gravityScaleLower = SnowflakesController.gravityScaleLower;
+    
+        if (xBound != SnowflakesController.xBound) xBound = SnowflakesController.xBound;
+        if (delay != SnowflakesController.delay) delay = SnowflakesController.delay;
+        if (burstDelay != SnowflakesController.burstDelay) burstDelay = SnowflakesController.burstDelay;
+        if (burstSize != SnowflakesController.burstSize) burstSize = SnowflakesController.burstSize;
+    }
 
     void Update()
     {
-        Debug.Log(poolSize);
+        CheckStats();
+
         if (addSnowflake && Time.timeSinceLevelLoad > nextReleaseTime)
         {
             nextReleaseTime += delay;
